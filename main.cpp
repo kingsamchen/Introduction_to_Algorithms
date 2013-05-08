@@ -1,7 +1,7 @@
 /************************************
 ** Edition:	v1.0.0 Demo
 ** Author:	Kingsley Chen	
-** Date:	2013/04/23
+** Date:	2013/05/08
 ** Purpose:	main
 ************************************/
 
@@ -17,6 +17,7 @@ int RandEx(int a, int b);
 void PermutingBySorting(int ary[], size_t len);
 void PermutingInPlace(int ary[], size_t len);
 void RandomSample(int m, int n, std::set<int>& intSet);
+int RandSearch(const int ary[], size_t len, int x);
 
 template<typename T>
 void print_out(T beg, T end, const char* dem = " ")
@@ -33,11 +34,9 @@ int _tmain(int argc, _TCHAR* argv[])
 {
     using namespace std;
     
-    const int LEN = 5;
-    int ary[LEN] = {3,7,4,2,8};
-    set<int> s;
-    RandomSample(7, 25, s);
-    print_out(s.begin(), s.end());
+    //const int LEN;
+    int ary[] = {3,7,4,2,8,12,32,43,34,28,5};
+    //cout<<RandSearch(ary, _countof(ary), 28);
 	_getch();
 	return 0;
 }

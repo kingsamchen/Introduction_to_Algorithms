@@ -1,7 +1,7 @@
 /************************************
 ** Edition:	v1.0.0 Demo
 ** Author:	Kingsley Chen	
-** Date:	2013/04/28
+** Date:	2013/05/08
 ** Purpose:	chapter 5 implementaion
 ************************************/
 
@@ -9,6 +9,7 @@
 #include <vector>
 #include <ctime>
 #include <set>
+#include <random>
 
 using std::size_t;
 using std::vector;
@@ -171,4 +172,34 @@ void RandomSample(int m, int n, set<int>& intSet)
             intSet.insert(n);
         }
     }
+}
+
+
+int RandSearch(const int ary[], size_t len, int x)
+{
+    size_t uncheckedCount = len;
+    vector<bool> checkedIdx(len);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<unsigned int> rnd(0, len - 1);
+
+    while (uncheckedCount > 0)
+    {
+        size_t rndIdx = rnd(gen);
+        if (true == checkedIdx[rndIdx])
+        {
+            continue;
+        }
+        else if (ary[rndIdx] == x)
+        {
+            return rndIdx;
+        } 
+        else
+        {
+            --uncheckedCount;
+            checkedIdx[rndIdx] = true;
+        }
+    }
+
+    return -1;
 }

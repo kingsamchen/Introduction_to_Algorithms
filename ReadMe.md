@@ -14,3 +14,6 @@ All stuff contained is user-implemented algorithms depicted in the book *Introdu
 		
 	RandomSample.
 		produce a m-subset from S={1,2,3,..,n}
+		
+	RandSearch. ch5 Problem 5-2
+		an interesting search algorithm
