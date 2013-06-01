@@ -32,6 +32,9 @@
     <ClCompile Include="probabilistic_analysis_and_randomized_algorithms.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="heapsort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.md">
