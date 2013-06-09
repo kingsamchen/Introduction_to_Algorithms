@@ -81,6 +81,7 @@
     <ClCompile Include="heapsort.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="probabilistic_analysis_and_randomized_algorithms.cpp" />
+    <ClCompile Include="quicksort.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>

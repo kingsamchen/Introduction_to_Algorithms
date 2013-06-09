@@ -30,3 +30,8 @@ build a max-heap on an array.
 
 + `Heapsort`
 heapsort algorithm
+
+
+##Chapter 7: Quicksort
++ `Quicksort` and `Partition`
+naive implementation for quicksort and its inherent partition routine.
