@@ -35,3 +35,9 @@ heapsort algorithm
 ##Chapter 7: Quicksort
 + `Quicksort` and `Partition`
 naive implementation for quicksort and its inherent partition routine.
+
++ `RandomPartition`
+randomized version
+
++ `QSortWithInsertion`
+an optimizatio implementation that binds insertion sort and quicksort
