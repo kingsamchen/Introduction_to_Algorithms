@@ -1,7 +1,7 @@
 /************************************
 ** Edition:	Demo
 ** Author:	Kingsley Chen	
-** Date:	2013/06/11
+** Date:	2013/06/15
 ** Purpose:	chapter 7 implementation
 ************************************/
 
@@ -90,4 +90,106 @@ void QSortWithInsertion(int ary[], int l, int r)
             QSortWithInsertion(ary, pivIdx + 1, r);
         }
     }
+}
+
+
+std::pair<int, int> EqualPartition(int ary[], int l, int r)
+{
+    int lt = l;
+    int gt = r;
+
+    int pivot = ary[l];
+    /* A[i..q-1] < A[q..t] < A[t+1..r] */
+    for (int j = l + 1; j <= gt;)
+    {
+        if (ary[j] < pivot)
+        {
+            swap(ary[j++], ary[lt++]);
+        }
+        else if (ary[j] > pivot)
+        {
+            swap(ary[j], ary[gt--]);
+        } 
+        else
+        {
+            ++j;
+        }
+    }
+
+    return std::make_pair(lt, gt);
+}
+
+
+int Partition(int a[], int left, int right)
+{
+    int piv = a[left];
+    int l = left, r = right + 1;
+ 
+    do
+    {
+        do 
+        {
+            ++l;
+        } while (a[l] < piv && l < r);
+ 
+        do 
+        {
+            --r;
+        } while (a[r] > piv);
+ 
+        if (l < r)
+        {
+            std::swap(a[l], a[r]);
+        }
+        else
+            break;
+    }while (l < r);
+ 
+    std::swap(a[left], a[r]);
+    return r;
+}
+
+ 
+int Partition(int a[], int left, int right)
+{
+	// pick the pivot from median of the three
+	int mid = (left + right) >> 1;
+	if (a[left] > a[mid])
+	{
+		std::swap(a[left], a[mid]);
+	}
+	if (a[mid]> a[right])
+	{
+		std::swap(a[mid], a[right]);
+	}
+	if (a[left] > a[mid])
+	{
+		std::swap(a[left], a[mid]);
+	}
+ 
+	/* {a[left] <= a[mid] <= a[right]} */
+	std::swap(a[mid], a[right-1]);
+	int pivot = a[right-1];
+ 
+	int l = left;
+	int r = right - 1;
+ 
+	do 
+	{
+		while (a[++l] < pivot)
+		{
+		}
+		while (a[--r] > pivot)
+		{
+		}
+ 
+		if (l < r)
+		{
+			std::swap(a[l], a[r]);
+		}
+ 
+	} while (l < r);
+ 
+	std::swap(a[l], a[right-1]);
+	return l;
 }
