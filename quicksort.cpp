@@ -120,7 +120,7 @@ std::pair<int, int> EqualPartition(int ary[], int l, int r)
 }
 
 
-int Partition(int a[], int left, int right)
+int Partition_(int a[], int left, int right)
 {
     int piv = a[left];
     int l = left, r = right + 1;
@@ -150,7 +150,7 @@ int Partition(int a[], int left, int right)
 }
 
  
-int Partition(int a[], int left, int right)
+int Partition_median(int a[], int left, int right)
 {
 	// pick the pivot from median of the three
 	int mid = (left + right) >> 1;

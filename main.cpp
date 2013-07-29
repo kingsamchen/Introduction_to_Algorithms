@@ -12,11 +12,11 @@
 #include <algorithm>
 #include <random>
 #include <set>
+#include <vector>
 
-int Partition(int ary[], int l, int r);
-void QuickSort(int ary[], int l, int r);
-void QSortWithInsertion(int ary[], int l, int r);
-std::pair<int, int> EqualPartition(int ary[], int l, int r);
+using namespace std;
+
+void CountingSort(vector<int>& src, unsigned int k);
 
 template<typename T>
 void print_out(T beg, T end, const char* dem = " ")
@@ -31,13 +31,12 @@ void print_out(T beg, T end, const char* dem = " ")
 
 int _tmain(int, _TCHAR**)
 {
-    using namespace std;
     
     //const int LEN;
-    int ary[] = {4,2,4,1,5,3,7,4};
-    pair<int, int>&& range = EqualPartition(ary, 0, _countof(ary) - 1);
-    cout<<"range:"<<range.first<<" "<<range.second<<endl;
-    print_out(ary, ary + _countof(ary));
+    int ary[] = {4,1,3,4,3};
+    vector<int> v(ary, ary + 5);
+    CountingSort(v, 4);
+    print_out(v.cbegin(), v.cend());
 	_getch();
 	return 0;
 }
