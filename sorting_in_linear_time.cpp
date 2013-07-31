@@ -1,11 +1,12 @@
 /************************************
 ** Edition:	Demo
 ** Author:	Kingsley Chen	
-** Date:	2013/07/29
+** Date:	2013/07/31
 ** Purpose:	chapter 8 implementation
 ************************************/
 
 #include <vector>
+#include <cassert>
 
 using std::vector;
 
@@ -31,4 +32,46 @@ void CountingSort(vector<int>& src, unsigned int k)
     }
 
     src.swap(tmp);
+}
+
+// use counting sort here
+void UnderlyingSort(vector<unsigned int>& src, int sectLen, int round)
+{
+    vector<int> aux(1U << sectLen);
+
+    for (auto it = src.cbegin(); it != src.cend(); ++it)
+    {
+        int sectVal = ((*it) >> (round * 8)) & 0xFF;
+        assert(sectVal >= 0 && sectVal < 256);
+        ++aux[sectVal];
+    }
+
+    for (auto i = 1U; i < aux.size(); ++i)
+    {
+        aux[i] += aux[i-1];
+    }
+
+    vector<unsigned int> tmp(src.size());
+    for (auto it = src.crbegin(); it != src.crend(); ++it)
+    {
+        int sectVal = ((*it) >> (round * 8)) & 0xFF;
+        assert(sectVal >= 0 && sectVal < 256);
+        tmp[--aux[sectVal]] = *it;
+    }
+
+    src.swap(tmp);
+}
+
+// use unsigned int in default thus
+// 32-bit r = 8-bit d = 32/8 = 4 rounds
+void RadixSort(vector<unsigned int>& src)
+{
+    const int BIT_LEN = 32;
+    const int SECTION_LEN = 8;
+    const int ROUND = BIT_LEN / SECTION_LEN;
+
+    for (int i = 0; i < ROUND; ++i)
+    {
+        UnderlyingSort(src, SECTION_LEN, i);
+    }
 }

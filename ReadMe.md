@@ -29,7 +29,7 @@ iterative implementation.
 build a max-heap on an array.
 
 + `Heapsort`
-heapsort algorithm
+heapsort algorithm.
 
 
 ##Chapter 7: Quicksort
@@ -37,7 +37,15 @@ heapsort algorithm
 naive implementation for quicksort and its inherent partition routine.
 
 + `RandomPartition`
-randomized version
+randomized version.
 
 + `QSortWithInsertion`
-an optimizatio implementation that binds insertion sort and quicksort
+an optimizatio implementation that binds insertion sort and quicksort.
+
+
+##Chapter 8: Sorting in Linear Time
++ `CountingSort`
+counting sort implementation.
+
++ `RadixSort` and `UnderlyingSort`
+a radix sort implementation for 32-bit non-negative integers.
