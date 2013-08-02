@@ -49,3 +49,6 @@ counting sort implementation.
 
 + `RadixSort` and `UnderlyingSort`
 a radix sort implementation for 32-bit non-negative integers.
+
++ `BucketSort`
+bucket sort implementation.

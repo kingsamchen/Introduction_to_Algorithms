@@ -1,14 +1,18 @@
 /************************************
 ** Edition:	Demo
 ** Author:	Kingsley Chen	
-** Date:	2013/07/31
+** Date:	2013/08/02
 ** Purpose:	chapter 8 implementation
 ************************************/
 
 #include <vector>
+#include <list>
+#include <algorithm>
 #include <cassert>
 
 using std::vector;
+using std::list;
+using std::for_each;
 
 // all elements in src range from 0 to k
 void CountingSort(vector<int>& src, unsigned int k)
@@ -73,5 +77,36 @@ void RadixSort(vector<unsigned int>& src)
     for (int i = 0; i < ROUND; ++i)
     {
         UnderlyingSort(src, SECTION_LEN, i);
+    }
+}
+
+// all elements range from [0, 1)
+void BucketSort(vector<double>& src)
+{
+    vector<list<double>> slots(src.size());
+
+    // insert element into a proper slot
+    for (auto it = src.cbegin(); it != src.cend(); ++it)
+    {
+        int bucket = static_cast<int>(*it * src.size());
+        slots[bucket].push_back(*it);
+    }
+
+    // sort slots
+    for_each(slots.begin(), slots.end(), [=](list<double>& l)
+    {
+        l.sort();
+    });
+
+    src.clear();
+    for (auto it = slots.cbegin(); it != slots.cend(); ++it)
+    {
+        if (!it->empty())
+        {
+            for (auto ele = it->cbegin(); ele != it->cend(); ++ele)
+            {
+                src.push_back(*ele);
+            }
+        }
     }
 }
