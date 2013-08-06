@@ -1,7 +1,7 @@
 /************************************
 ** Edition:	Demo
 ** Author:	Kingsley Chen	
-** Date:	2013/08/02
+** Date:	2013/08/06
 ** Purpose:	chapter 8 implementation
 ************************************/
 
@@ -84,7 +84,7 @@ void RadixSort(vector<unsigned int>& src)
 void BucketSort(vector<double>& src)
 {
     vector<list<double>> slots(src.size());
-
+                
     // insert element into a proper slot
     for (auto it = src.cbegin(); it != src.cend(); ++it)
     {
@@ -107,6 +107,52 @@ void BucketSort(vector<double>& src)
             {
                 src.push_back(*ele);
             }
+        }
+    }
+}
+
+// elements still range between 0~k
+void InPlaceCountingSort(vector<int>& src, unsigned int k)
+{
+    // need O(k) extra storage
+    vector<int> eleFreq(k+1);
+
+    for (auto it = src.cbegin(); it != src.cend(); ++it)
+    {
+        ++eleFreq[*it];
+    }
+
+    vector<int> accuEleCnt(eleFreq.cbegin(), eleFreq.cend());
+    for (unsigned int i = 1U; i < accuEleCnt.size(); ++i)
+    {
+        accuEleCnt[i] += accuEleCnt[i-1];
+    }
+
+    // need n-1 = O(n) swap in worst-case
+    int srcSize = src.size();
+    for (int i = 0; i < srcSize; ++i)
+    {
+        while (eleFreq[src[i]] > 0 && i != accuEleCnt[src[i]])
+        {
+            --eleFreq[src[i]];
+            assert(accuEleCnt[src[i]] >= 0 && accuEleCnt[src[i]] <= srcSize);
+            std::swap(src[i], src[--accuEleCnt[src[i]]]);
+        }
+    }
+}
+
+// a special variant
+// elements are consecutive integer range within [0, size)
+void _InPlaceCountingSort(vector<int>& numbers) 
+{
+    int size = numbers.size();
+    for (int i = 0; i < size; i++ ) 
+    {
+        while (numbers[i] != i) 
+        {
+            int temp = numbers[numbers[i]];
+            numbers[numbers[i]] = numbers[i];
+            numbers[i] = temp;
         }
     }
 }

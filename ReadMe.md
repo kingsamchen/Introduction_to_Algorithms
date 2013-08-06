@@ -52,3 +52,6 @@ a radix sort implementation for 32-bit non-negative integers.
 
 + `BucketSort`
 bucket sort implementation.
+
++ `InPlaceCountingSort` and `_InPlaceCountingSort`
+a general in-place counting sort implementation (also need O(k) extra storage) and a special variant of O(1) in-place counting sort.
