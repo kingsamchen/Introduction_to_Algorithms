@@ -80,6 +80,7 @@
   <ItemGroup>
     <ClCompile Include="heapsort.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="medians_and_order_statistics.cpp" />
     <ClCompile Include="probabilistic_analysis_and_randomized_algorithms.cpp" />
     <ClCompile Include="quicksort.cpp" />
     <ClCompile Include="sorting_in_linear_time.cpp" />

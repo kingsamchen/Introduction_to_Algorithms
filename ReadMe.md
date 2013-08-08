@@ -55,3 +55,12 @@ bucket sort implementation.
 
 + `InPlaceCountingSort` and `_InPlaceCountingSort`
 a general in-place counting sort implementation (also need O(k) extra storage) and a special variant of O(1) in-place counting sort.
+
+
+##Chapter 9: Medians and Order Statistics
++ `FindMaxandMin`
+find both max and min at same time using least comparisons
+
++ `RandomizedSelecton` and `RandomizedSelectonIter`
+k-th smallest problem implementation
+

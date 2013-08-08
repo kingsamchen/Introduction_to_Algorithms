@@ -16,10 +16,8 @@
 
 using namespace std;
 
-void CountingSort(vector<int>& src, unsigned int k);
-void RadixSort(vector<unsigned int>& src);
-void BucketSort(vector<double>& src);
-void InPlaceCountingSort(vector<int>& src, unsigned int k);
+int RandomizedSelect(int ary[], int l, int r, int k);
+int RandomizedSelectIter(int ary[], size_t len, int k);
 
 template<typename T>
 void print_out(T beg, T end, const char* dem = " ")
@@ -35,11 +33,13 @@ void print_out(T beg, T end, const char* dem = " ")
 int _tmain(int, _TCHAR**)
 {
     //const int LEN;
-    int ary[] = {2,5,3,0,2,3,0,3};
-    vector<int> v(ary, ary + _countof(ary));
-    InPlaceCountingSort(v, 5);
-    print_out(v.cbegin(), v.cend());
+    int ary[] = {3,5,2,7,6,10,8};
+    //vector<int> v(ary, ary + _countof(ary));
+    for (int i = 1; i <= _countof(ary); ++i)
+    {
+        cout<<RandomizedSelectIter(ary, _countof(ary), i)<<endl;
+    }
+
 	_getch();
 	return 0;
 }
-
