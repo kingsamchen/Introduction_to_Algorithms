@@ -1,7 +1,7 @@
 /************************************
 ** Edition:	Demo
 ** Author:	Kingsley Chen	
-** Date:	2013/10/07
+** Date:	2013/10/08
 ** Purpose:	Chapter 10 implementations
 ************************************/
 
@@ -90,3 +90,65 @@ class Deque
         int _head;
         int _tail;
 };
+
+struct node
+{
+    node(int data, node* next = nullptr) : _data(data), _next(next)
+    {}
+
+    int _data;
+    node* _next;
+};
+
+node* InitializeSinglyLinkedList()
+{
+    node* sentinel = new node(0xDEADBEEF);
+    sentinel->_next = sentinel;
+
+    return sentinel;
+}
+
+node* SinglyLinkedListInsert(node* lst, int ele)
+{
+    node* newHead = new node(ele, lst->_next);
+    lst->_next = newHead;
+
+    return newHead;
+}
+
+void DestroySinglyLinkedList(node*& lst)
+{
+    for (node* curr = lst->_next; curr != lst;)
+    {
+        node* next = curr->_next;
+        delete curr;
+        curr = next;
+    }
+
+    delete lst;
+    lst = nullptr;
+}
+
+/*
+  brief:
+    reverse a singly linked list that employs sentinel strategy
+    code might be more succint if no sentinal used
+  param:
+    lst[in] - pointer to sentinel node of the linked list
+  return:
+    none
+*/
+void ReverseSinglyLinkedList(node* lst)
+{
+    node* prev = lst;
+    node* curr = lst->_next;
+    while (curr != lst)
+    {
+        node* next = curr->_next;
+        curr->_next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    lst->_next = prev;
+}

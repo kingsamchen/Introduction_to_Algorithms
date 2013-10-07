@@ -68,3 +68,4 @@ k-th smallest problem implementation
 + class `Deque`
 a quick-and-simple deque implementation
 
++ a set of operations based on singly linked list
