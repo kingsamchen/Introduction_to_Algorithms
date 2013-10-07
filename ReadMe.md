@@ -64,3 +64,7 @@ find both max and min at same time using least comparisons
 + `RandomizedSelecton` and `RandomizedSelectonIter`
 k-th smallest problem implementation
 
+##Chapter 10: Elementary Data Structures
++ class `Deque`
+a quick-and-simple deque implementation
+

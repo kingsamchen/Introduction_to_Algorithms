@@ -78,6 +78,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="elementary_data_structures.cpp" />
     <ClCompile Include="heapsort.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="medians_and_order_statistics.cpp" />

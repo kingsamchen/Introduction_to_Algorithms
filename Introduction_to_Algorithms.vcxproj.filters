@@ -44,6 +44,9 @@
     <ClCompile Include="medians_and_order_statistics.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="elementary_data_structures.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.md">
