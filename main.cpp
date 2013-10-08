@@ -14,6 +14,7 @@
 #include <set>
 #include <vector>
 #include <cassert>
+#include <crtdbg.h>
 
 struct node
 {
@@ -28,6 +29,7 @@ node* InitializeSinglyLinkedList();
 node* SinglyLinkedListInsert(node* lst, int ele);
 void DestroySinglyLinkedList(node*& lst);
 void ReverseSinglyLinkedList(node* lst);
+void DoTest();
 
 using namespace std;
 
@@ -46,20 +48,8 @@ int _tmain(int, _TCHAR**)
 {
     //const int LEN;
     //int ary[] = {4,7,4,2,1,9,8};
-    node* lst = InitializeSinglyLinkedList();
-    SinglyLinkedListInsert(lst, 1);
-    SinglyLinkedListInsert(lst, 3);
-    SinglyLinkedListInsert(lst, 5);
-    ReverseSinglyLinkedList(lst);
-
-    node* p = lst->_next;
-    while (p != lst)
-    {
-        cout<<"node "<<p->_data<<endl;
-        p = p->_next;
-    }
-    DestroySinglyLinkedList(lst);
-    assert(lst == nullptr);
+    DoTest();
+    _CrtCheckMemory();
 	_getch();
 	return 0;
 }

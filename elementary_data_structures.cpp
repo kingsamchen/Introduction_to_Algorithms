@@ -6,6 +6,8 @@
 ************************************/
 
 #include <stdexcept>
+#include <cassert>
+#include <iostream>
 
 // a minimal implementation
 // preassume element type is int
@@ -151,4 +153,118 @@ void ReverseSinglyLinkedList(node* lst)
     }
 
     lst->_next = prev;
+}
+
+class XORQueue
+{
+    public:
+        XORQueue() : _head(0), _tail(0)
+        {
+        }
+
+        ~XORQueue()
+        {
+            Destroy();
+        }
+
+        /* omit copy-counterparts */
+
+        void Enqueue(int ele)
+        {
+            node* entry = new node();
+            entry->data = ele;
+
+            if (!_head)
+            {
+                entry->prevNextAddr = 0;
+                _head = entry;
+            }
+            else if (!_tail)
+            {
+                entry->prevNextAddr = _head;
+                _tail = entry;
+                _head->prevNextAddr = _tail;
+            } 
+            else
+            {
+                entry->prevNextAddr = _tail;
+                _tail->prevNextAddr = (node*)((int)(_tail->prevNextAddr) ^ (int)(entry));
+                _tail = entry;
+            }
+        }
+
+        int Dequeue()
+        {
+            assert(_head != 0);
+            int data = _head->data;
+
+            if (!_tail)
+            {
+                delete _head;
+                _head = 0;
+
+                return data;    
+            }
+            else if (_head->prevNextAddr == _tail && _tail->prevNextAddr == _head)
+            {
+                delete _head;
+                _head = _tail;
+                _tail = 0;
+                _head->prevNextAddr = 0;
+
+                return data;
+            }
+            else
+            {
+                node* tmp = _head;
+                _head = _head->prevNextAddr;
+                _head->prevNextAddr = (node*)((int)(_head->prevNextAddr) ^ (int)(tmp));
+                delete tmp;
+
+                return data;
+            }
+        }
+    
+        int empty()
+        {
+            return _head == 0;
+        }
+
+    private:
+        void Destroy()
+        {
+            node* prev = 0;
+            node* curr = _head;
+
+            while (prev != _tail)
+            {
+                node* next = (node*)((int)curr->prevNextAddr ^ (int)prev);
+                delete curr;
+                prev = curr;
+                curr = next;
+            }
+        }
+
+    private:
+        struct node
+        {
+            int data;
+            node* prevNextAddr;
+        };
+
+        node* _head;
+        node* _tail;
+};
+
+/* Test-Driven Interface */
+void DoTest()
+{
+    XORQueue xorLst;
+    xorLst.Enqueue(1);
+    xorLst.Enqueue(3);
+    xorLst.Enqueue(5);
+    xorLst.Enqueue(7);
+    
+    std::cout<<xorLst.Dequeue()<<std::endl;
+    std::cout<<xorLst.Dequeue()<<std::endl;    
 }

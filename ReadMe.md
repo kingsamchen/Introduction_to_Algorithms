@@ -69,3 +69,6 @@ k-th smallest problem implementation
 a quick-and-simple deque implementation
 
 + a set of operations based on singly linked list
+
++ class `XORQueue`
+a queue based on xor-linked-list.
